@@ -29,7 +29,7 @@ The pattern files use special key words at the start of each line you wish to fi
 	check: add x3, x0, x1
 	check-next: ldr     x1, \[x0\]   <-- note the escape character
 
-#Regular Expression Compatible
+#Regular Expression Compatible  
 The code is regular expression compatible as each line in the pattern is converted from string into a regex object.
 This allows users to be able to find a variable starting with a specific character followed by any sequence of numbers or letters.
 
@@ -40,7 +40,7 @@ EXAMPLE:
 
 Please see the 'Example Patterns Directory' which includes sample patterns used with the 'Asembly_code.txt' and their expected output.
 
-#Variable usage in patterns
+#Variable usage in patterns  
 
 The script is also compatible with being able to assign a variable a value and use it later in the pattern.
 
