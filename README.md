@@ -88,5 +88,5 @@ Matches Found = 24
 time taken = 0.8005317 secs.  
 Pattern was found in:  
 	17 Methods.   
-	23 groups.  
+	23 groups.
 #### -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
