@@ -5,6 +5,7 @@ The script takes two input arguments
 2. The Assembly Code to search in a txt file.
 
 ## Running the Code
+
 Example command line execution of script.  
 	bash...  
 		$.\Program.exe pattern.txt Asembly_code.txt  
@@ -29,7 +30,8 @@ The pattern files use special key words at the start of each line you wish to fi
 	check: add x3, x0, x1
 	check-next: ldr     x1, \[x0\]   <-- note the escape character
 
-#Regular Expression Compatible  
+# Regular Expression Compatible
+
 The code is regular expression compatible as each line in the pattern is converted from string into a regex object.
 This allows users to be able to find a variable starting with a specific character followed by any sequence of numbers or letters.
 
@@ -40,7 +42,7 @@ EXAMPLE:
 
 Please see the 'Example Patterns Directory' which includes sample patterns used with the 'Asembly_code.txt' and their expected output.
 
-#Variable usage in patterns  
+# Variable usage in patterns  
 
 The script is also compatible with being able to assign a variable a value and use it later in the pattern.
 
@@ -57,7 +59,7 @@ Will return as a match:
 	sub x1, x2, x3
 	mul r3, x3, r3
 
-#Comments in pattern
+# Comments in pattern
 The pattern file is capable of ignoring comments through the use of '#' at the start of a line.
 this will allow the user to identify a pattern file that they're using and wish to use again at a later date. By including the
 reasons behind the pattern they wish to search for.
@@ -65,12 +67,12 @@ reasons behind the pattern they wish to search for.
 
 # Example Inputs and Outputs
 
-#-- -- -- -- -- Input -- -- -- -- --
+## -- -- -- -- -- Input -- -- -- -- --
 check: add     x1, x1, #16
 check-next: add  x3, x0, x1
-#-- -- -- -- -- -- -- -- -- -- -- --
+## -- -- -- -- -- -- -- -- -- -- -- --
 
-#-- -- -- -- -- Output -- -- -- -- --
+## -- -- -- -- -- Output -- -- -- -- --
 ; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
 
 	G_M29703_IG09:
@@ -87,4 +89,4 @@ time taken = 0.8005317 secs.
 Pattern was found in:
 	17 Methods. 
 	23 groups.
-#-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+## -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
