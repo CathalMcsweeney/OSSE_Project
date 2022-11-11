@@ -67,12 +67,12 @@ reasons behind the pattern they wish to search for.
 
 # Example Inputs and Outputs
 
-## -- -- -- -- -- Input -- -- -- -- --
+#### -- -- -- -- -- Input -- -- -- -- --
 check: add     x1, x1, #16
 check-next: add  x3, x0, x1
-## -- -- -- -- -- -- -- -- -- -- -- --
+#### -- -- -- -- -- -- -- -- -- -- -- --
 
-## -- -- -- -- -- Output -- -- -- -- --
+#### -- -- -- -- -- Output -- -- -- -- --
 ; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
 
 	G_M29703_IG09:
@@ -89,4 +89,4 @@ time taken = 0.8005317 secs.
 Pattern was found in:
 	17 Methods. 
 	23 groups.
-## -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+#### -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
