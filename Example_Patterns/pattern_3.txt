@@ -1,0 +1,4 @@
+# checks patterns in different groups printed in same method
+# Also checks Variable assigning
+check: ldr     (?<REG1>x[0-9]+), \[x0\]
+check-next: mov     x23, ?<<REG1>>

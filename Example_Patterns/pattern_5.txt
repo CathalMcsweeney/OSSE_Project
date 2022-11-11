@@ -1,0 +1,3 @@
+# Checks to ensure restart of search when end of a method is reached
+check: bkpt
+check-next: stp+

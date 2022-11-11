@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "assembly_patterns": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\2cath\\source\\repos\\jitutils\\assembly_patterns\\pattern.txt C:\\Users\\2cath\\source\\repos\\jitutils\\assembly_patterns\\Example_Patterns\\Asembly_code.txt"
+    }
+  }
+}

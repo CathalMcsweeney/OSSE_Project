@@ -1,0 +1,4 @@
+#checks basic function of finding input string pattern
+check: mov     x3, x0
+check-next: mov     x0, x19
+check-next: mov     w1, w21

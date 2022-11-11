@@ -1,0 +1,135 @@
+; Assembly listing for method System.Runtime.CompilerServices.CastHelpers:StelemRef(System.Array,int,System.Object)
+
+	G_M24931_IG02:
+27:	 add x1, x1, #16
+28:	 add x3, x0, x1
+----------------------------------------------------------
+; Assembly listing for method System.Runtime.CompilerServices.CastHelpers:LdelemaRef(System.Array,int,long):byref
+
+	G_M46441_IG02:
+100:	 add x1, x1, #16
+101:	 add x1, x0, x1
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[HostSignal,__Canon][BenchmarkDotNet.Engines.HostSignal,System.__Canon]:TryInsert(int,System.__Canon,ubyte):bool:this
+
+	G_M34399_IG35:
+4648:	 add x0, x0, #16
+4649:	 add x0, x23, x0
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[__Canon,HostSignal][System.__Canon,BenchmarkDotNet.Engines.HostSignal]:TryInsert(System.__Canon,int,ubyte):bool:this
+
+	G_M223_IG46:
+6923:	 add x0, x0, #16
+6924:	 add x2, x23, x0
+----------------------------------------------------------
+6935:	 add x0, x0, #16
+6936:	 add x0, x23, x0
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[HostSignal,__Canon][BenchmarkDotNet.Engines.HostSignal,System.__Canon]:FindValue(int):byref:this
+
+	G_M33412_IG09:
+7367:	 add x0, x0, #16
+7368:	 add x0, x22, x0
+----------------------------------------------------------
+
+	G_M33412_IG17:
+7488:	 add x1, x1, #16
+7489:	 add x1, x22, x1
+----------------------------------------------------------
+; Assembly listing for method System.Linq.Set`1[__Canon][System.__Canon]:Resize():this
+
+	G_M15720_IG06:
+31083:	 add x2, x2, #16
+31084:	 add x2, x23, x2
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Concurrent.ConcurrentDictionary`2[__Canon,__Canon][System.__Canon,System.__Canon]:TryAddInternal(System.__Canon,int,System.__Canon,bool,bool,byref):bool:this
+
+	G_M46721_IG38:
+32934:	 add x1, x1, #16
+32935:	 add x0, x0, x1
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.HashSet`1[__Canon][System.__Canon]:AddIfNotPresent(System.__Canon):bool:this
+
+	G_M34602_IG33:
+33418:	 add x0, x0, #16
+33419:	 add x0, x22, x0
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.HashSet`1[__Canon][System.__Canon]:SetCapacity(int):this
+
+	G_M1613_IG08:
+34042:	 add x3, x3, #16
+34043:	 add x3, x21, x3
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Concurrent.ConcurrentDictionary`2[__Canon,__Canon][System.__Canon,System.__Canon]:GrowTable(Tables[__Canon,__Canon]):this
+
+	G_M44557_IG31:
+35779:	 add x0, x0, #16
+35780:	 add x0, x24, x0
+----------------------------------------------------------
+; Assembly listing for method System.Linq.Set`1[__Canon][System.__Canon]:Remove(System.__Canon):bool:this
+
+	G_M39438_IG13:
+38638:	 add x0, x0, #16
+38639:	 add x0, x2, x0
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[LogKind,ConsoleColor][BenchmarkDotNet.Loggers.LogKind,System.ConsoleColor]:TryInsert(int,int,ubyte):bool:this
+
+	G_M5456_IG35:
+41444:	 add x0, x0, #16
+41445:	 add x0, x23, x0
+----------------------------------------------------------
+
+	G_M5456_IG37:
+41484:	 add x0, x0, #16
+41485:	 add x0, x23, x0
+----------------------------------------------------------
+; Assembly listing for method Enumerator[Int32,Int32][System.Int32,System.Int32]:MoveNext():bool:this
+
+	G_M19443_IG04:
+48478:	 add x1, x1, #16
+48479:	 add x1, x2, x1
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Concurrent.ConcurrentQueueSegment`1[Int32][System.Int32]:.ctor(int):this
+
+	G_M49804_IG07:
+48933:	 add x3, x3, #16
+48934:	 add x2, x2, x3
+----------------------------------------------------------
+; Assembly listing for method BenchmarkDotNet.Mathematics.MeasurementsStatistics:GetQuartile(System.Collections.Generic.List`1[Measurement],int):double
+
+	G_M39771_IG04:
+67833:	 add x1, x1, #16
+67834:	 add x0, x0, x1
+----------------------------------------------------------
+
+	G_M39771_IG07:
+67856:	 add x0, x0, #16
+67857:	 add x0, x4, x0
+----------------------------------------------------------
+
+	G_M39771_IG12:
+67893:	 add x1, x1, #16
+67894:	 add x0, x0, x1
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:TryInsert(int,System.ValueTuple`2[Int32,Int32],ubyte):bool:this
+
+	G_M59898_IG35:
+69632:	 add x0, x0, #16
+69633:	 add x0, x22, x0
+----------------------------------------------------------
+
+	G_M59898_IG37:
+69674:	 add x0, x0, #16
+69675:	 add x0, x22, x0
+----------------------------------------------------------
+; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
+
+	G_M29703_IG09:
+69962:	 add x0, x0, #16
+69963:	 add x0, x22, x0
+----------------------------------------------------------
+
+	G_M29703_IG17:
+70083:	 add x1, x1, #16
+70084:	 add x1, x22, x1
+----------------------------------------------------------
