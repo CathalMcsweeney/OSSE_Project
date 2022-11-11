@@ -192,6 +192,7 @@ public class pattern_finder
                     {
                         tempFoundCode.Clear();
                         capturedVariables.Clear();
+                        invalidPattern = false;
                         nextLine = tempLine;
                         group = tempGroup;
                         method = tempMethod;
@@ -203,6 +204,7 @@ public class pattern_finder
                     }
                     if (currPatternLine >= inPattern.Count) //successful pattern found, clear temp objects
                     {
+                        invalidPattern = false;
                         counter++;
                         //add in found patterns data
                         tempFoundCode.Add("----------------------------------------------------------");

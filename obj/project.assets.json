@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth Year\\OSSE\\Ongoing_Project\\assembly_patterns\\assembly_patterns.csproj",
+      "projectUniqueName": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\assembly_patterns.csproj",
       "projectName": "assembly_patterns",
-      "projectPath": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth Year\\OSSE\\Ongoing_Project\\assembly_patterns\\assembly_patterns.csproj",
+      "projectPath": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\assembly_patterns.csproj",
       "packagesPath": "C:\\Users\\2cath\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth Year\\OSSE\\Ongoing_Project\\assembly_patterns\\obj\\",
+      "outputPath": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\2cath\\AppData\\Roaming\\NuGet\\NuGet.Config",

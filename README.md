@@ -90,3 +90,27 @@ Pattern was found in:
 	17 Methods.   
 	23 groups.
 #### -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+#### -- -- -- -- -- Input -- -- -- -- --
+check: add     x1, x1, #16
+check-next: add  x3, x0, x1
+#### -- -- -- -- -- -- -- -- -- -- -- --
+
+#### -- -- -- -- -- Output -- -- -- -- --
+; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
+
+G_M29703_IG09:  
+69962:	 add x0, x0, #16  
+69963:	 add x0, x22, x0  
+"----------------------------------------------------------"
+
+G_M29703_IG17:  
+70083:	 add x1, x1, #16  
+70084:	 add x1, x22, x1  
+"----------------------------------------------------------"  
+Matches Found = 24  
+time taken = 0.8005317 secs.  
+Pattern was found in:  
+	17 Methods.   
+	23 groups.
+#### -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
