@@ -6,7 +6,7 @@ The script takes two input arguments
 2. The Assembly Code to search in a txt file.
 
 
-Example command line execution of script.
+Example command line execution of script.  
 	bash...  
 		$.\Program.exe pattern.txt Asembly_code.txt  
 	...  
