@@ -36,29 +36,44 @@ public class pattern_finder
         p.pattern = System.IO.File.ReadAllLines(args[0]);
         string[] assembly = System.IO.File.ReadAllLines(args[1]);
 
-        //Pattern file is empty error ####
+        //Pattern file is empty try/ catch
         try
         {
             p.patternCleaner();//removes extra spaces
         }
-        catch(EmtpyPatternFileException ex)
+        //error catch for empty Pattern file
+        catch (EmtpyPatternFileException ex)
         {
             Console.WriteLine(ex.Message);
             Environment.Exit(1);
         }
-        //error catch for empty Pattern file
-
-
+        
         p.inputToRegex(p.pattern); // converts to regex (combine in above method in future)
 
-        p.removeComments(assembly); //removes comments and assigns line number of code from original file
-        p.patternChecker();//main function checking the pattern against each line of code in the assembly file
-
+        try
+        {
+            p.removeComments(assembly); //removes comments and assigns line number of code from original file
+        }
+        catch (EmptyAssemblyFileException ex)
+        {
+            Console.WriteLine(ex.Message);
+            Environment.Exit(1);
+        }
+        try
+        {
+            p.patternChecker();//main function checking the pattern against each line of code in the assembly file
+        }
+        catch (InvalidPatternException ex)
+        {
+            Console.WriteLine(ex.Message);
+            Environment.Exit(2);
+        }
         watch.Stop();
 
         //if a match is found prints output,
         if (p.counter > 0)
         {
+            //file used here is to save to text file
             p.printFoundPatterns();
             Console.WriteLine("Matches Found = " + p.counter);
             p.file.WriteLine("Matches Found = " + p.counter);
@@ -80,9 +95,11 @@ public class pattern_finder
     }
     public void patternChecker()
     {
-        //take a snapshot
+        
         bool methodAdded = false;
         bool groupChanged = false;
+        //gets set to true when 'check' can no longer be used
+        bool invalidPattern = false;
         int currPatternLine = 0;
 
         int nextLine = 0;
@@ -122,19 +139,21 @@ public class pattern_finder
 
                     if (currPat.StartsWith("check-next:") && checkNext(comp, method, group, currLine))
                     {
+                        invalidPattern = true;
                         string toAdd = assemblyMethods[method].groups[group].lineNum[currLine]+":\t "+ curCode;
                         tempFoundCode.Add(toAdd);
                         currPatternLine++;
                     }
 
-                    else if (currPat.StartsWith("check-not:"))
-                    {
+                    //else if (currPat.StartsWith("check-not:"))
+                    //{
 
-                        currPatternLine++;
-                    }
+                    //    currPatternLine++;
+                    //}
 
                     else if (currPat.StartsWith("check:") && check(comp, method, group, currLine) && currPatternLine == 0)
                     {
+                        //stores found patter temp until full match found or cancelled
                         tempLine = currLine + 1;
                         tempGroup = group;
                         tempMethod = method;
@@ -147,7 +166,11 @@ public class pattern_finder
                     }
                     else if (currPat.StartsWith("check:") && currPatternLine > 0)
                     {
-                        if (check(comp, method, group, currLine))
+                        if (invalidPattern == true)
+                        {
+                            throw new InvalidPatternException();
+                        }
+                        else if (check(comp, method, group, currLine))
                         {
                             string toAdd = assemblyMethods[method].groups[group].lineNum[currLine] + ":\t " + curCode;
                             tempFoundCode.Add(toAdd);
@@ -160,7 +183,7 @@ public class pattern_finder
                             continue;
                         }
                     }
-                    else if (currPatternLine == 0)
+                    else if (currPatternLine == 0)//iterates to next line to be checked
                     {
                         currLine = nextLine;
                         continue;
@@ -293,12 +316,12 @@ public class pattern_finder
     {
         Regex newReg = new Regex(inn);
         Match m = newReg.Match(assemblyMethods[method].groups[group].code[codeLine]);
-        GroupCollection g = m.Groups;
+        GroupCollection grp = m.Groups;
         if (newReg.IsMatch(assemblyMethods[method].groups[group].code[codeLine]))
         {
-            for (int i = 1; i < g.Count; i++)
+            for (int i = 1; i < grp.Count; i++)
             {
-                capturedVariables[g[i].Name] = g[i].Value;
+                capturedVariables[grp[i].Name] = grp[i].Value;
             }
             return true;
         }
@@ -338,6 +361,10 @@ public class pattern_finder
         int i = 0;
         int j = 0;
         int x = 0;
+        if(inputCode.Length < 1)
+        {
+            throw new EmptyAssemblyFileException();
+        }
         foreach (string line in inputCode)
         {
             lineCount++;
@@ -405,13 +432,18 @@ public class pattern_finder
 
 class EmtpyPatternFileException : Exception
 {
-    //public EmtpyPatternFileException() { }
-
     public EmtpyPatternFileException()
-        : base(String.Format("Invalid Pattern File\nPattern File is Empty"))
-    {
-
-    }
+        : base(String.Format("Invalid Pattern File\nPattern File is Empty")){}
+}
+class EmptyAssemblyFileException : Exception
+{
+    public EmptyAssemblyFileException()
+        : base(String.Format("Invalid Assembly File\nAssembly File is Empty")) { }
+}
+class InvalidPatternException : Exception
+{
+    public InvalidPatternException()
+        : base(String.Format("Invalid Pattern\nPattern File Contains Invalid Pattern")){}
 }
 
 public class assemblyMethod

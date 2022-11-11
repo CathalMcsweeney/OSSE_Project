@@ -13,3 +13,18 @@ C:\Users\2cath\source\repos\jitutils\assembly_patterns\obj\Debug\net6.0\assembly
 C:\Users\2cath\source\repos\jitutils\assembly_patterns\obj\Debug\net6.0\ref\assembly_patterns.dll
 C:\Users\2cath\source\repos\jitutils\assembly_patterns\obj\Debug\net6.0\assembly_patterns.pdb
 C:\Users\2cath\source\repos\jitutils\assembly_patterns\obj\Debug\net6.0\assembly_patterns.genruntimeconfig.cache
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.csproj.AssemblyReference.cache
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.AssemblyInfoInputs.cache
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.AssemblyInfo.cs
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.csproj.CoreCompileInputs.cache
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.dll
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\ref\assembly_patterns.dll
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.pdb
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\assembly_patterns.exe
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\assembly_patterns.deps.json
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\assembly_patterns.runtimeconfig.json
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\assembly_patterns.dll
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\ref\assembly_patterns.dll
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\bin\Debug\net6.0\assembly_patterns.pdb
+C:\Users\2cath\OneDrive\Documents\College\Fourth Year\OSSE\Ongoing_Project\assembly_patterns\obj\Debug\net6.0\assembly_patterns.genruntimeconfig.cache
