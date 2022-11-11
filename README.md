@@ -1,8 +1,8 @@
-# Pattern finding script
+## Pattern finding script
 
 The script takes two input arguments 
-	1. The pattern.txt
-	2. The Assembly Code to search in a txt file
+	1. The pattern.txt.
+	2. The Assembly Code to search in a txt file.
 
 
 Example command line execution of script.
