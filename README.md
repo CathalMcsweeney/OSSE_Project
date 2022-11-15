@@ -51,11 +51,16 @@ using the folowing command (?<VAR>x1) captures the variable VAR with the value x
 to use this later in a pattern (?<<VAR>>) is used.
 
 EXAMPLE:
+
 This pattern:
+
 	check: add (?<REG1>r[0-9]+), (?<REG2>r[0-9]+), (?<REG3>r[0-9]+)
 	check-next: sub (?<REG4>x[0-9]+), (?<REG5>x[0-9]+), (?<REG6>x[0-9]+)
 	check-next: mul ?<<REG3>>, ?<<REG6>>, ?<<REG3>>
+
+
 Will return as a match:
+
 	add r1, r2, r3
 	sub x1, x2, x3
 	mul r3, x3, r3
