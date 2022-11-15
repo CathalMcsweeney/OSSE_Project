@@ -36,6 +36,7 @@ The code is regular expression compatible as each line in the pattern is convert
 This allows users to be able to find a variable starting with a specific character followed by any sequence of numbers or letters.
 
 EXAMPLE:
+
 	check: add x[0-9]+, x[0-9]+, x1
 
 	This returns any line of code in this pattern --> "add x*number*, x*number*, x1"
