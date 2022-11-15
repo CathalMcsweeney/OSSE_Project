@@ -6,7 +6,7 @@
 803:	 mov w1, w21
 ----------------------------------------------------------
 Matches Found = 1
-time taken = 1.0615385 secs.
+time taken = 1.1940381 secs.
 Pattern was found in:
 	1 Methods. 
 	1 groups.
