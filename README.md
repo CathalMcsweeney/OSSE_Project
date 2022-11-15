@@ -82,7 +82,7 @@ reasons behind the pattern they wish to search for.
 
 #### -- -- -- -- -- Output -- -- -- -- --
 ; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
-:
+
 	G_M29703_IG09:  
 	69962:	 add x0, x0, #16  
 	69963:	 add x0, x22, x0  
