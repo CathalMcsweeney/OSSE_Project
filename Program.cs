@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 public class pattern_finder
 {
     //text file used to save output of runs
-    public StreamWriter file = new StreamWriter("C:/Users/2cath/source/repos/jitutils/assembly_patterns/WriteLines2.txt");
+    public StreamWriter file = new StreamWriter("C:/Users/2cath/OneDrive/Documents/College/Fourth_Year/OSSE/Ongoing_Project/assembly_patterns/WriteLines2.txt");
     //dictionary uses the captured variable name in the first string
     //and assigns its content in the second string
     public Dictionary<string, string> capturedVariables = new Dictionary<string, string>();
@@ -66,7 +66,7 @@ public class pattern_finder
         catch (InvalidPatternException ex)
         {
             Console.WriteLine(ex.Message);
-            Environment.Exit(2);
+            Environment.Exit(2); 
         }
         watch.Stop();
 
