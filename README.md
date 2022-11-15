@@ -118,4 +118,3 @@ reasons behind the pattern they wish to search for.
 	Pattern was found in:  
 		17 Methods.   
 		23 groups.
-#### -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
