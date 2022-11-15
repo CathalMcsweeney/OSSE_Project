@@ -78,7 +78,6 @@ reasons behind the pattern they wish to search for.
 	check: add     x1, x1, #16
 	check-next: add  x3, x0, x1
 
-#### -- -- -- -- -- -- -- -- -- -- -- --
 #### -- -- -- -- -- Output -- -- -- -- --
 
 	; Assembly listing for method System.Collections.Generic.Dictionary`2[ConfidenceLevel,ValueTuple`2][BenchmarkDotNet.Mathematics.ConfidenceLevel,System.ValueTuple`2[System.Int32,System.Int32]]:FindValue(int):byref:this
@@ -97,7 +96,6 @@ reasons behind the pattern they wish to search for.
 	Pattern was found in:  
 		17 Methods.   
 		23 groups.
-#### -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
 #### -- -- -- -- -- Input -- -- -- -- --
 	check: add     x1, x1, #16
