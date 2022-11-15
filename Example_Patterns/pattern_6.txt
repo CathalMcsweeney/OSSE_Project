@@ -1,4 +1,6 @@
 # checks patterns in different groups printed in same method
 # Also checks Variable assigning
-check: bkpt
-check-next: stp
+check: add     x[0-9], x
+check: cmp     x[0-9]
+check-next: bne
+check: 

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 
-
 public class pattern_finder
 {
     //text file used to save output of runs
