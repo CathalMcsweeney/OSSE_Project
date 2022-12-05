@@ -1,6 +1,4 @@
-# checks patterns in different groups printed in same method
-# Also checks Variable assigning
-check: add     x[0-9], x
-check: cmp     x[0-9]
-check-next: bne
-check: 
+# Check after a check-next search
+check: sxtw    x1, x1
+check-next: lsl     x1, x1, #3
+check:  add     x3, x0, x1

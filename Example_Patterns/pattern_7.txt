@@ -1,0 +1,4 @@
+# Check searcjh continues after gap in code lines
+check: ldr     x1, \[x1,#56\]
+check-next: cbz     x2, G_M24931_IG06
+check:  ldr     x4, \[x2\]

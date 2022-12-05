@@ -1,0 +1,1 @@
+; Assembly listing for method System.Runtime.CompilerServices.CastHelpers:StelemRef(System.Array,int,System.Object)	G_M24931_IG03:30:	 ldr x1, [x1,#56]31:	 cbz x2, G_M24931_IG0634:	 ldr x4, [x2]----------------------------------------------------------Matches Found = 1Pattern was found in:	1 Methods. 	1 groups.

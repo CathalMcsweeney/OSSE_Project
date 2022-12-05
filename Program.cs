@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
+
 
 public class pattern_finder
 {
-    //text file used to save output of runs
-    public StreamWriter file = new StreamWriter("C:/Users/2cath/OneDrive/Documents/College/Fourth_Year/OSSE/Ongoing_Project/assembly_patterns/WriteLines2.txt");
     //dictionary uses the captured variable name in the first string
     //and assigns its content in the second string
+    public bool testOngoing = false;
+
     public Dictionary<string, string> capturedVariables = new Dictionary<string, string>();
+
+    public StringBuilder buildReturnStr = new StringBuilder();
 
     public List<string> found = new List<string>();
     public List<string> tempFoundCode = new List<string>();
@@ -19,7 +23,6 @@ public class pattern_finder
     public List<assemblyMethod> assemblyMethods = new List<assemblyMethod>();
     List<Regex> inPattern = new List<Regex>();
     string[] pattern;
-    //Regex[] inPattern;
     public string rex = @"\s*([0-9A-F]{8})\s+(\w+)\s+(.*)";
     public int counter = 0;
     public int methodsFound = 0;
@@ -27,13 +30,84 @@ public class pattern_finder
 
     public static void Main(string[] args)
     {
-        Stopwatch watch = new Stopwatch();
-        watch.Start();
+        pattern_finder p = new pattern_finder();
+        try
+        {
+            if (args.Length<2)
+            {
+                throw new notEnoughArgumentsException();
+            }
+            if (!File.Exists(args[0]))
+            {
+                throw new fileDoesntExistException(String.Format("File "+args[0]+" in Path doesnt exist"));
+            }
+            if (!File.Exists(args[1]) )
+            {
+                throw new fileDoesntExistException(String.Format("File " + args[1] + " in Path doesnt exist"));
+            }
+            string pattern = args[0];
+            string assembly = args[1];
+            patternReturnInfo patternReturnInfo = new patternReturnInfo();
+            patternReturnInfo = p.heartBeat(pattern, assembly);
+            if (patternReturnInfo != null)
+            {
+                p.printFoundPatterns(patternReturnInfo);//only prints to screen when running
+            }
+        }
+        catch (notEnoughArgumentsException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 
+        public void testInProgress()
+    {
+        testOngoing = true;
+    }
+    public StringBuilder heartbeatReturnString(patternReturnInfo fndInfo)
+    {
+        if (fndInfo != null)
+        {
+            List<foundCode> fndSnps = fndInfo.code;
+
+
+            foreach (foundCode fc in fndSnps)
+            {
+                if (fc.method != null)
+                {
+                    methodsFound++;
+                    buildReturnStr.Append(fc.method);
+                }
+                if (fc.groupName != null)
+                {
+                    groupsFound++;
+                    buildReturnStr.Append(fc.groupName);
+                }
+                foreach (string line in fc.code)
+                {
+                    buildReturnStr.Append(line);
+                }
+            }
+            fndInfo.otherInfo.Add("\t" + methodsFound + " Methods. \t" + groupsFound + " groups.");
+            foreach (string line in fndInfo.otherInfo)
+            {
+                buildReturnStr.Append(line);
+            }
+            string ret = buildReturnStr.ToString();
+            return buildReturnStr;
+        }
+        else
+        {
+            return buildReturnStr;
+        }
+    }
+
+    public patternReturnInfo heartBeat(string pattern, string assembley)
+    {
         pattern_finder p = new pattern_finder();
 
-        p.pattern = System.IO.File.ReadAllLines(args[0]);
-        string[] assembly = System.IO.File.ReadAllLines(args[1]);
+        p.pattern = System.IO.File.ReadAllLines(pattern);
+        string[] assembly = System.IO.File.ReadAllLines(assembley);
 
         //Pattern file is empty try/ catch
         try
@@ -46,9 +120,7 @@ public class pattern_finder
             Console.WriteLine(ex.Message);
             Environment.Exit(1);
         }
-        
         p.inputToRegex(p.pattern); // converts to regex (combine in above method in future)
-
         try
         {
             p.removeComments(assembly); //removes comments and assigns line number of code from original file
@@ -65,31 +137,30 @@ public class pattern_finder
         catch (InvalidPatternException ex)
         {
             Console.WriteLine(ex.Message);
-            Environment.Exit(2); 
+            Environment.Exit(2);
         }
-        watch.Stop();
-
+        
         //if a match is found prints output,
         if (p.counter > 0)
         {
-            //file used here is to save to text file
-            p.printFoundPatterns();
-            Console.WriteLine("Matches Found = " + p.counter);
-            p.file.WriteLine("Matches Found = " + p.counter);
-            Console.WriteLine("time taken = " + watch.Elapsed.TotalSeconds + " secs.");
-            p.file.WriteLine("time taken = " + watch.Elapsed.TotalSeconds + " secs.");
-            Console.WriteLine("Pattern was found in:");
-            p.file.WriteLine("Pattern was found in:");
-            Console.WriteLine("\t" + p.methodsFound + " Methods. \n\t" + p.groupsFound + " groups.");
-            p.file.WriteLine("\t" + p.methodsFound + " Methods. \n\t" + p.groupsFound + " groups.");
+            patternReturnInfo patRetInf = new patternReturnInfo();
+            patRetInf.code = p.foundCodeSnippets;
 
-            p.file.Close();
+            patRetInf.otherInfo.Add("Matches Found = " + p.counter);
+            patRetInf.otherInfo.Add("Pattern was found in:");
+
+            return patRetInf;
         }
-        //if no matches found possible error
+
+        //if no matches found warning
         else
         {
-            #warning "0 Matches found"
-            Console.WriteLine("\n\n"+p.counter+ " Matches Found \n\nCheck your Pattern file for correct input");
+            if (testOngoing == true) {
+
+                Console.WriteLine("\n\n" + p.counter + " Matches Found \n\nCheck your Pattern file for correct input");
+            }
+            buildReturnStr.Append(p.counter + " Matches Found Check your Pattern file for correct input");
+            return null;
         }
     }
     public void patternChecker()
@@ -120,14 +191,17 @@ public class pattern_finder
 
                 for (int currLine = 0; currLine < testAc.code.Count;) //each line of code in a group
                 {
-                    string currPat = inPattern[currPatternLine].ToString();
-                    string comp = Regex.Replace(currPat, @"^[^\s]+\s*", "");
-                    string curCode = assemblyMethods[method].groups[group].code[currLine];
+                    string currPat = inPattern[currPatternLine].ToString(); //sets currently pattern from input string
+                    string comp = Regex.Replace(currPat, @"^[^\s]+\s*", ""); //changes input string to regular expression removing the search definition
+                    string curCode = assemblyMethods[method].groups[group].code[currLine]; //the current line of code being checked
                     nextLine = currLine + 1;
-
-                    if (currPat.Contains("?<<"))
+                    if (comp.Length<1)
                     {
-                        Regex extractorRegex = new Regex(@"\?<<(\w+)>>");
+                        throw new EmtpyPatternFileException();
+                    }
+                    if (currPat.Contains("?<<")) //used for named parameters (ie assign a value to a parameter)
+                    {
+                        Regex extractorRegex = new Regex(@"\?<<(\w+)>>"); //removes the identifying syntax
                         MatchCollection extractedMatch = extractorRegex.Matches(currPat);
                         foreach (Match match in extractedMatch)
                         {
@@ -138,17 +212,11 @@ public class pattern_finder
 
                     if (currPat.StartsWith("check-next:") && checkNext(comp, method, group, currLine))
                     {
-                        invalidPattern = true;
+                        //invalidPattern = true;
                         string toAdd = assemblyMethods[method].groups[group].lineNum[currLine]+":\t "+ curCode;
                         tempFoundCode.Add(toAdd);
                         currPatternLine++;
                     }
-
-                    //else if (currPat.StartsWith("check-not:"))
-                    //{
-
-                    //    currPatternLine++;
-                    //}
 
                     else if (currPat.StartsWith("check:") && check(comp, method, group, currLine) && currPatternLine == 0)
                     {
@@ -218,7 +286,7 @@ public class pattern_finder
                         if (groupChanged == false)
                         {
                             groupChanged = true;
-                            string groupToAdd = "\n\t" + assemblyMethods[method].groups[group].name;
+                            string groupToAdd = "\t" + assemblyMethods[method].groups[group].name;
                             newFoundPattern.groupName = groupToAdd;
                         }
                         addCodeToList(newFoundPattern);
@@ -243,42 +311,48 @@ public class pattern_finder
         }
         foundCodeSnippets.Add(newFoundCode);
     }
-    public void printFoundPatterns()
+    public void printFoundPatterns(patternReturnInfo fndInfo)
     {
-        List<string> toTextFile = new List<string>();
-        
+        List<foundCode> fndSnps = fndInfo.code;
 
-        foreach (foundCode fc in foundCodeSnippets)
+        foreach (foundCode fc in fndSnps)
         {
             if(fc.method != null)
             {
-                toTextFile.Add(fc.method);
                 Console.WriteLine(fc.method);
                 methodsFound++;
+
+                buildReturnStr.Append(fc.method);
             }
             if(fc.groupName != null)
             {
-                toTextFile.Add(fc.groupName);
                 Console.WriteLine(fc.groupName);
                 groupsFound++;
+
+                buildReturnStr.Append(fc.groupName);
             }
             foreach(string line in fc.code)
             {
-                toTextFile.Add(line);
                 Console.WriteLine("\t\t"+line);
+
+                buildReturnStr.Append(line);
             }
         }
-        foreach (string line in toTextFile)
+        fndInfo.otherInfo.Add("\t" + methodsFound + " Methods. \t" + groupsFound + " groups.");
+        foreach (string line in fndInfo.otherInfo)
         {
-            file.WriteLine(line);
+            Console.WriteLine(line);
+            buildReturnStr.Append(line);
         }
-        
+        //saves as a local text file to be used for testing purposes
+        //StreamWriter file = new StreamWriter(@"C:\Users\2cath\OneDrive\Documents\College\Fourth_Year\OSSE\Ongoing_Project\assembly_patterns\Example_Patterns\pattern_10_correct.txt");
+        //file.Write(buildReturnStr.ToString());
+        //file.Close();
     }
     public void inputToRegex(string[] input)
     {
         foreach (string inn in input)
         {
-            //cus = CleanedUpString
             string cus = Regex.Replace(inn, "\\s+", " ");
             Regex ret = new Regex(cus);
             inPattern.Add(ret);
@@ -286,9 +360,7 @@ public class pattern_finder
     }
     public void patternCleaner()
     {
-
         List<string> temp = new List<string>();
-
         int x = 0;
         for (int i = 0; i < pattern.Length; i++)
         {
@@ -331,11 +403,6 @@ public class pattern_finder
             return false;
         }
     }
-    //'check-not' function
-    public bool checkNot(string ptrn)
-    {
-        return false;
-    }
     //'check-next' function
     public bool checkNext(string inn, int method, int group, int codeLine)
     {
@@ -358,6 +425,8 @@ public class pattern_finder
     //reads in assembly code and parses through it removing filler & comments
     public void removeComments(string[] inputCode)
     {
+        bool assemblyFile = false;
+
         int lineCount = 0;
         int i = 0;
         int j = 0;
@@ -372,6 +441,7 @@ public class pattern_finder
             Match m = Regex.Match(line, rex);
             if (line.StartsWith("; Assembly listing for method "))
             {
+                assemblyFile = true;
                 i = 0;
                 //create new function object
                 assemblyMethod am = new assemblyMethod();
@@ -396,17 +466,31 @@ public class pattern_finder
             }
             else if (line.Length <= 15)
             {
-                try
+                if(assemblyFile==true)
                 {
-                    //make a new methods object 
-                    assemblyMethods[x].addGroup();
-                    assemblyMethods[x].groups[i].name = line;
-                    j++;
-                    //am.methods[i][j] = line;
+                    try
+                    {
+                        //make a new methods object 
+                        assemblyMethods[x].addGroup();
+                        assemblyMethods[x].groups[i].name = line;
+                        j++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error in adding to 2D array", ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine("Error in adding to 2D array", ex);
+                    assemblyMethod am = new assemblyMethod();
+                    am.functionName = "N/A";
+                    assemblyMethods.Add(am);
+                    assemblyMethods[x].addGroup();
+                    assemblyMethods[x].groups[i].name = "N/A";
+                    string a = Regex.Replace(line, @"\s+\w+\s+", "");
+                    a = Regex.Replace(a, "\\s+", " ");
+                    assemblyMethods[x].groups[i].code.Add(a);
+                    assemblyMethods[x].groups[i].lineNum.Add(lineCount);
                 }
             }
             else if (line.Contains(";;"))
@@ -426,7 +510,6 @@ public class pattern_finder
             {
                 continue;
             }
-            
         }
     }    
 }
@@ -445,6 +528,16 @@ class InvalidPatternException : Exception
 {
     public InvalidPatternException()
         : base(String.Format("Invalid Pattern\nPattern File Contains Invalid Pattern")){}
+}
+class notEnoughArgumentsException : Exception
+{
+    public notEnoughArgumentsException()
+    : base(String.Format("Incorrect number of Arguments entered must be 2 files \n1) A pattern file\n2) An Assembly file\n$Program.exe pattern.txt assemblyCode.txt")) { }
+}
+class fileDoesntExistException : Exception
+{
+    public fileDoesntExistException(string message)
+    : base(message) { }
 }
 
 public class assemblyMethod
@@ -470,4 +563,10 @@ public class foundCode
     public string groupName = null;
     public List<string> code = new List<string>();
     public List<int> lineNum = new List<int>();
+    
+}
+public class patternReturnInfo
+{
+    public List<foundCode> code = new List<foundCode>();
+    public List<string> otherInfo = new List<string>();
 }

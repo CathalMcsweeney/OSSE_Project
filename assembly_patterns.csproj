@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="heartbeat">
+      <HintPath>..\heartbeat\obj\Debug\net6.0\ref\heartbeat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

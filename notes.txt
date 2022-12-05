@@ -1,0 +1,9 @@
+   public static void Main(string[] args)    {
+   FindPatterns(patternFile, inputFile);
+}
+
+string actualoutput = FindPatterns("c:\assembly.txt", "test1\pattern1.txt");
+
+string expectedOutput = File.ReadAllText("C:\test1\expectedoutput.txt");
+
+Assert(expectedOutput == actualOutput);

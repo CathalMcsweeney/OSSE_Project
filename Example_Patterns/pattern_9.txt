@@ -1,0 +1,4 @@
+# Checks that patterns can be found in non txt files
+# not the best return but can be improved at a later time
+check: check
+check-next: check-next

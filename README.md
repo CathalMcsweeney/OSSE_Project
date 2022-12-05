@@ -1,3 +1,9 @@
+#Clone the repository to a local directory
+
+After you have cloned this repo to a local directory  you just need to run the below commands.
+
+You will need to ensure your machine has a CSharp(C#) compiler installed.
+
 # Pattern finding script
 
 The script takes two input arguments 
@@ -7,6 +13,13 @@ The script takes two input arguments
 ## Running the Code
 
 Example command line execution of script.  
+	
+	While in the Assembly_patterns directory
+
+	bash...  
+		$csc Program.cs  
+	...  
+
 	bash...  
 		$.\Program.exe pattern.txt Asembly_code.txt  
 	...  

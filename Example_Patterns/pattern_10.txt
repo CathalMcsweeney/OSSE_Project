@@ -1,0 +1,3 @@
+# Checks that incorrect input returns no print out
+check: ladders
+check-next: snakes and ladders
