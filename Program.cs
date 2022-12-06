@@ -489,7 +489,7 @@ public class pattern_finder
                     assemblyMethods.Add(am);
                     assemblyMethods[x].addGroup();
                     assemblyMethods[x].groups[i].name = "N/A";
-                    string a = Regex.Replace(line, @"\s+\w+\s+", "");
+                    string a = Regex.Replace(line, @"^(\s+\w+\s+)", "");
                     a = Regex.Replace(a, "\\s+", " ");
                     assemblyMethods[x].groups[i].code.Add(a);
                     assemblyMethods[x].groups[i].lineNum.Add(lineCount);
@@ -501,7 +501,7 @@ public class pattern_finder
             }
             else if (m.Success)
             {
-                string a = Regex.Replace(line, @"\s+\w+\s+", "");
+                string a = Regex.Replace(line, @"^(\s+\w+\s+)", "");
                 a = Regex.Replace(a, "\\s+", " ");
                 assemblyMethods[x].groups[i].code.Add(a);
                 assemblyMethods[x].groups[i].lineNum.Add(lineCount);
