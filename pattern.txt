@@ -1,3 +1,5 @@
-# Check searcjh continues after gap in code lines
-check:
-check-next:
+# checks multiple checks in a row continues searching correctly
+# until finds next check or method ends
+check: ret   lr
+check: ldr     x0+
+check-next: movz    x[0-9]+

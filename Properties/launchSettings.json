@@ -2,7 +2,7 @@
   "profiles": {
     "assembly_patterns": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\pattern.txt C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\Assembly_code.txt"
+      "commandLineArgs": "C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\pattern.txt C:\\Users\\2cath\\OneDrive\\Documents\\College\\Fourth_Year\\OSSE\\Ongoing_Project\\assembly_patterns\\Example_Patterns\\Assembly_code.txt"
     }
   }
 }

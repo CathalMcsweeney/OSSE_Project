@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-
+#pragma warning disable CS8603 // Possible null reference return.
 
 public class pattern_finder
 {
@@ -22,7 +22,7 @@ public class pattern_finder
 
     public List<assemblyMethod> assemblyMethods = new List<assemblyMethod>();
     List<Regex> inPattern = new List<Regex>();
-    string[] pattern;
+    string[] pattern = new string[0];
     public string rex = @"\s*([0-9A-F]{8})\s+(\w+)\s+(.*)";
     public int counter = 0;
     public int methodsFound = 0;
@@ -73,12 +73,12 @@ public class pattern_finder
 
             foreach (foundCode fc in fndSnps)
             {
-                if (fc.method != null)
+                if(!string.IsNullOrEmpty(fc.method))
                 {
                     methodsFound++;
                     buildReturnStr.Append(fc.method);
                 }
-                if (fc.groupName != null)
+                if (!string.IsNullOrEmpty(fc.groupName))
                 {
                     groupsFound++;
                     buildReturnStr.Append(fc.groupName);
@@ -160,7 +160,9 @@ public class pattern_finder
                 Console.WriteLine("\n\n" + p.counter + " Matches Found \n\nCheck your Pattern file for correct input");
             }
             buildReturnStr.Append(p.counter + " Matches Found Check your Pattern file for correct input");
+
             return null;
+
         }
     }
     public void patternChecker()
@@ -317,14 +319,14 @@ public class pattern_finder
 
         foreach (foundCode fc in fndSnps)
         {
-            if(fc.method != null)
+            if(!string.IsNullOrEmpty(fc.method))
             {
                 Console.WriteLine(fc.method);
                 methodsFound++;
 
                 buildReturnStr.Append(fc.method);
             }
-            if(fc.groupName != null)
+            if(!string.IsNullOrEmpty(fc.groupName))
             {
                 Console.WriteLine(fc.groupName);
                 groupsFound++;
@@ -345,7 +347,7 @@ public class pattern_finder
             buildReturnStr.Append(line);
         }
         //saves as a local text file to be used for testing purposes
-        //StreamWriter file = new StreamWriter(@"C:\Users\2cath\OneDrive\Documents\College\Fourth_Year\OSSE\Ongoing_Project\assembly_patterns\Example_Patterns\pattern_10_correct.txt");
+        //StreamWriter file = new StreamWriter(@"C:\Users\2cath\OneDrive\Documents\College\Fourth_Year\OSSE\Ongoing_Project\assembly_patterns\Example_Patterns\pattern_0005_correct.txt");
         //file.Write(buildReturnStr.ToString());
         //file.Close();
     }
@@ -542,7 +544,7 @@ class fileDoesntExistException : Exception
 
 public class assemblyMethod
 {
-    public string functionName;
+    public string functionName = "";
     public List<assemblyCode> groups = new List<assemblyCode>();
 
     public void addGroup()
@@ -553,14 +555,14 @@ public class assemblyMethod
 }
 public class assemblyCode
 {
-    public string name;
+    public string name = "";
     public List<string> code = new List<string>();
     public List<int> lineNum = new List<int>();
 }
 public class foundCode
 {
-    public string method = null;
-    public string groupName = null;
+    public string method = "";
+    public string groupName = "";
     public List<string> code = new List<string>();
     public List<int> lineNum = new List<int>();
     
